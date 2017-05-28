@@ -6,8 +6,18 @@ import java.util.Stack;
  * Created by meryqing on 20/5/2017.
  */
 
-public class cityPolulation {
-    int[] allcitys = new int[] {18897109, 12828837, 9461105, 6371773, 5965343, 5946800, 5582170, 5564635, 5268860, 4552402, 4335391, 4296250, 4224851, 4192887, 3439809, 3279833, 3095313, 2812896, 2783243, 2710489, 2543482, 2356285, 2226009, 2149127, 2142508,  2134411};
+public class population {
+
+    static int[] allcitys = new int[] {18897109, 12828837, 9461105, 6371773, 5965343, 5946800, 5582170, 5564635, 5268860, 4552402, 4335391, 4296250, 4224851, 4192887, 3439809, 3279833, 3095313, 2812896, 2783243, 2710489, 2543482, 2356285, 2226009, 2149127, 2142508,  2134411};
+    static int[] test = new int[]{1,2,3};
+    Stack<Integer> stack = new Stack<>();
+    StringBuilder sb = new StringBuilder();
+
+    public static void main(String[] args) {
+      population pop = new population();
+      pop.getsubsetcitys(allcitys);
+    }
+
     public void getsubsetcitys(int[] allcitys) {
         List<Integer> subset = new ArrayList<Integer>();
         int totalPeople = 0;
@@ -21,8 +31,8 @@ public class cityPolulation {
 //        int offset = totalPeople - threshold;
 //        Log.i("getcitys", "total 26 citys = " + totalPeople + "offset ="+offset);
 //        threshold/allcitys[0] = 5.xx so at least there need 6 cites
-        subsets(allcitys);
-//        populateSubset(allcitys, 0, allcitys.length, 0, threshold,15,24);
+        // subsets(allcitys);
+       populateSubset(allcitys, 0, allcitys.length, 0, threshold,15,24);
     }
 
     public void subsets(int[] a)
@@ -32,19 +42,18 @@ public class cityPolulation {
 
     private void calc(int from, int to, int[] a)
     {
-        Stack<Integer> stack = new Stack<>();
         for(int i=from;i<to;i++)
         {
-            System.out.print("i = "+ i +"from "+ from+ "to "+to+"current "+ a[i]);
-            System.out.println();
+            // System.out.print("i = "+ i +"from "+ from+ "to "+to+"current "+ a[i]);
+            // System.out.println();
             stack.push(a[i]);
             calc(i+1,to, a);
-            System.out.print("i = "+ i +"from "+ from+ "to "+to+"poped ="+stack.lastElement());
-            System.out.println();
+            // System.out.print("i = "+ i +"from "+ from+ "to "+to+"poped ="+stack.lastElement());
+            // System.out.println();
             stack.pop();
         }
-        System.out.print("from "+ from+ "to "+to);
-        System.out.println();
+        // System.out.print("from "+ from+ "to "+to);
+        // System.out.println();
         for(Integer i:stack)
         {
             System.out.print(i+" ");
@@ -58,7 +67,6 @@ public class cityPolulation {
 
     public void populateSubset(int[] values, int begin, int end,
                                int sumInStack, int expectedSum, int minNum, int maxNum) {
-        Stack<Integer> stack = new Stack<>();
         /*
          * 判断Stack中的数据和是否等于目标值，如果是则输出当前Stack中的数据
          */
@@ -92,7 +100,6 @@ public class cityPolulation {
     }
 
     private void print(Stack<Integer> stack, int expectedSum) {
-        StringBuilder sb = new StringBuilder();
         sb.setLength(0);
         sb.append(expectedSum + " = ");
         for (int element : stack) {
